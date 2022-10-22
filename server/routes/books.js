@@ -73,7 +73,7 @@ router.post("/edit/:id", (req, res, next) => {
    * ADD CODE HERE *
    *****************/
   let id = req.params.id;
-  let updatedBook = Book({
+  let updatedBook = book({
     _id: id,
     title: req.body.title,
     author: req.body.author,

@@ -9,7 +9,7 @@ let cookieParser = require("cookie-parser");
 let logger = require("morgan");
 let bodyParser = require("body-parser");
 // require mongoDB model
-let Book = require("../models/books");
+let book = require("../models/books");
 // import "mongoose" - required for DB Access
 let mongoose = require("mongoose");
 // URI
