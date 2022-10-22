@@ -56,12 +56,13 @@ router.get("/edit/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+
   let id = req.params.id;
   book.findOne({ _id: id }, (err, bookEdit) => {
     if (err) {
       res.send("ERROR");
     } else {
-      res.render("book/edit", { title: "Edit Book", book: bookEdit });
+      res.render("books/edit.ejs", { title: "Edit Book", book: bookEdit });
     }
   });
 });

@@ -1,4 +1,4 @@
-// Ka Wai Wong 
+// Ka Wai Wong
 // 301201043
 
 // moddules for node and express
@@ -7,7 +7,7 @@ let express = require("express");
 let path = require("path");
 let cookieParser = require("cookie-parser");
 let logger = require("morgan");
-
+let bodyParser = require("body-parser");
 // require mongoDB model
 let Book = require("../models/books");
 // import "mongoose" - required for DB Access
@@ -51,6 +51,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../../client")));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // route redirects
 app.use("/", index);
