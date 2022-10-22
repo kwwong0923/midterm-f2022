@@ -1,4 +1,4 @@
-// Ka Wai Wong 
+// Ka Wai Wong
 // 301201043
 // modules required for routing
 let express = require("express");
@@ -57,7 +57,7 @@ router.get("/edit/:id", (req, res, next) => {
    * ADD CODE HERE *
    *****************/
   let id = req.params.id;
-  book.findById(id, (err, bookEdit) => {
+  book.findOne({ _id: id }, (err, bookEdit) => {
     if (err) {
       res.send("ERROR");
     } else {
@@ -80,6 +80,8 @@ router.post("/edit/:id", (req, res, next) => {
     description: req.body.description,
     genre: req.body.genre,
   });
+
+  book.updateOne({ _id: id }, updatedBook);
 });
 
 // GET - process the delete by user id
@@ -87,7 +89,8 @@ router.get("/delete/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
-  let { id } = req.params;
+  console.log("DELETE");
+  let id = req.params.id;
   book.remove({ _id: id }, (err) => {
     if (err) {
       console.log(err);
