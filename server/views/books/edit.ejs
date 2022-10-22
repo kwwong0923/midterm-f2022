@@ -1,0 +1,38 @@
+
+
+<% include ../partials/header.ejs %>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <h1><%= title %></h1>
+  <form method="POST">
+    <label for="title">Book Title: </label>
+    <input type="text" id="title" name="title" placeholder="Book Title"
+    value="<%= book.title%>/>
+    <br />
+
+    <label for="author">Author: </label>
+    <input type="text" id="author" name="author" placeholder="Book Author"
+    value="<%= book.author%>/>
+    <br />
+
+    <label for="price">Price: </label>
+    <input type="Number" id="price" name="price" placeholder="Price" value="<%=
+    book.price%>/>
+    <br />
+
+    <label for="description">Description: </label>
+    <input type="text" id="description" name="description"
+    placeholder="description" value="<%= book.description%> />
+    <br />
+
+    <label for="genre">Genre: </label>
+    <input type="text" id="genre" name="genre" placeholder="Genre" value="<%=
+    book.genre%>/>
+    <br />
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<% include ../partials/footer.ejs %>

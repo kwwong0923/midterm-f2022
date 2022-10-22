@@ -1,3 +1,6 @@
+// Ka Wai Wong 
+// 301201043
+
 let mongoose = require('mongoose');
 
 // create a model class

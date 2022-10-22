@@ -1,3 +1,6 @@
+// Ka Wai Wong 
+// 301201043
+
 // moddules for node and express
 let createError = require("http-errors");
 let express = require("express");
@@ -6,7 +9,7 @@ let cookieParser = require("cookie-parser");
 let logger = require("morgan");
 
 // require mongoDB model
-const Book = require("../models/books");
+let Book = require("../models/books");
 // import "mongoose" - required for DB Access
 let mongoose = require("mongoose");
 // URI
@@ -34,6 +37,7 @@ mongoDB.once("open", () => {
 // define routers
 let index = require("../routes/index"); // top level routes
 let books = require("../routes/books"); // routes for books
+const { WSAENAMETOOLONG } = require("constants");
 
 let app = express();
 

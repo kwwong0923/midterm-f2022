@@ -1,3 +1,5 @@
+// Ka Wai Wong 
+// 301201043
 // modules required for routing
 let express = require("express");
 let router = express.Router();
@@ -37,69 +39,60 @@ router.post("/add", (req, res, next) => {
   // instance a book object and get the req.body
   let { title, author, price, description, genre } = req.body;
   let newBook = new book({
-    title,
-    author,
-    price,
-    description,
-    genre,
+    title: req.body.title,
+    author: req.body.author,
+    price: req.body.price,
+    description: req.body.description,
+    genre: req.body.genre,
   });
   // save the new book
-  newBook.save().then(() => {
-    console.log("Book have been saved");
-    console.log(`${title}, ${author}, ${price}, ${description}, ${genre}`);
-    res.render("books/index", {
-      title: "Books",
-      books: books,
-    });
+  book.create(newBook, () => {
+    res.redirect("/books");
   });
 });
 
 // GET the Book Details page in order to edit an existing Book
-router.get("/:id", (req, res, next) => {
+router.get("/edit/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
-   let {id} = req.body;
-   book.findById(id, (err, bookEdit) => {
-     if(err){
-       res.send("ERROR");
-     }
-     else{
-       res.render('book/edit', {title: "Edit Book", book: bookEdit});
-
-     }
-   })
+  let id = req.params.id;
+  book.findById(id, (err, bookEdit) => {
+    if (err) {
+      res.send("ERROR");
+    } else {
+      res.render("book/edit", { title: "Edit Book", book: bookEdit });
+    }
+  });
 });
 
 // POST - process the information passed from the details form and update the document
-router.post("/:id", (req, res, next) => {
+router.post("/edit/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
-  let {id, title, author, price, description, genre} = req.params;
-  let updatedBook = Book(
-    {
-      _id: id,
-      title,
-      price,
-      description,
-      genre
-    }
-  )
-}
-);
+  let id = req.params.id;
+  let updatedBook = Book({
+    _id: id,
+    title: req.body.title,
+    author: req.body.author,
+    price: req.body.price,
+    description: req.body.description,
+    genre: req.body.genre,
+  });
+});
 
 // GET - process the delete by user id
 router.get("/delete/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
-  let {id} = req.params;
-  book.remove({_id: id}, (err) =>{
-    if(err){
+  let { id } = req.params;
+  book.remove({ _id: id }, (err) => {
+    if (err) {
       console.log(err);
     }
-  })
+  });
 });
 
 module.exports = router;
